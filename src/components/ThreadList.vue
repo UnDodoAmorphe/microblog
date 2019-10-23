@@ -9,7 +9,7 @@
     <input type="text" v-show="isEnabled" placeholder="Choisissez un titre">
 
 <ul id="list" class="list-group">
-    <li v-for="item in items" v-bind:key="item.id" @click="content" class="list-group-item">
+    <li v-for="item in info" v-bind:key="item.id" class="list-group-item">
         {{item.title}}
     </li>
 </ul>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+    const axios = require('axios').default;
     export default {
         name: "ThreadList",
         data () {
@@ -27,9 +28,27 @@
                     {title: "Bar",
                      body: "Ipsum lorem etc"}
                 ],
-                isEnabled: false
+                isEnabled: false,
+                info: null
             }
         },
+        methods: {
+            /*content: function () {
+               axios.get("https://localhost:5001/api/thread/")
+                .then(function(response) {
+                      
+                      })
+                .catch(function(response) {
+                   
+               });
+            return response.data;
+            }*/
+        },
+        mounted() {
+             axios.get('https://localhost:5001/api/thread/')
+      .then(response => (this.info = response.data))
+        },
+        
         components: {
         }
     }
