@@ -1,9 +1,5 @@
 <template>
 <div class="home container">
-   <nav>
-       <a href="">NAV 1</a>
-       <a href="">NAV 2</a>
-   </nav>
     <div class="row">
         <section class="col-lg-2">Thèmes</section>
         <ThreadList class="col-lg-4"></ThreadList>
