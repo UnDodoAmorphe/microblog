@@ -1,9 +1,13 @@
 <template>
 <div class="home container">
     <div class="row">
-        <section class="col-lg-2">Thèmes</section>
-        <ThreadList class="col-lg-4"></ThreadList>
-        <section class="col-lg-6">Commentaires</section>
+        <ThemeList class="col-lg-2">Thèmes</ThemeList>
+        <ThreadList class="col-lg-4" 
+            v-model="postTitle">
+            </ThreadList>
+        <PostAndComments class="col-lg-6" :title="postTitle">
+        Commentaires
+        </PostAndComments>
     </div>
     <div class="row">
         <footer>
@@ -16,11 +20,20 @@
 <script>
     // @ is an alias to /src
     import ThreadList from "@/components/ThreadList.vue"
+    import PostAndComments from "@/components/PostAndComments.vue"
+    import ThemeList from "@/components/ThemeList.vue"
 
     export default {
         name: 'home',
+        data () {
+            return {
+                postTitle: null
+            }
+        },
         components: {
-            ThreadList
+            ThreadList,
+            PostAndComments,
+            ThemeList
         }
     }
 </script>

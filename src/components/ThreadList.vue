@@ -6,13 +6,17 @@
     <button class="btn btn-lg btn-block" @click="isEnabled = !isEnabled">
         Commencer un nouveau thread
     </button>
-    <input type="text" v-show="isEnabled" placeholder="Choisissez un titre">
+    <input type="text" 
+           :value="value" 
+           v-show="isEnabled" 
+           placeholder="Choisissez un titre" @keyup.enter="$emit('input', $event.target.value)"
+           class="form-control">
 
-<ul id="list" class="list-group">
-    <li v-for="item in info" v-bind:key="item.id" class="list-group-item">
-        {{item.title}}
-    </li>
-</ul>
+    <ul id="list" class="list-group">
+        <li v-for="item in info" v-bind:key="item.id" class="list-group-item">
+            {{item.title}}
+        </li>
+    </ul>
 </section>
 </template>
 
@@ -22,33 +26,21 @@
         name: "ThreadList",
         data () {
             return {
-                items: [
-                    {title: "Foo",
-                     body: "Lorem ipsum etc"},
-                    {title: "Bar",
-                     body: "Ipsum lorem etc"}
-                ],
                 isEnabled: false,
-                info: null
+                info: []
             }
         },
+        props: [
+            "value"
+        ],
         methods: {
-            /*content: function () {
-               axios.get("https://localhost:5001/api/thread/")
-                .then(function(response) {
-                      
-                      })
-                .catch(function(response) {
-                   
-               });
-            return response.data;
-            }*/
-        },
+
+    },
         mounted() {
-             axios.get('https://localhost:5001/api/thread/')
-      .then(response => (this.info = response.data))
-        },
-        
+        axios.get('https://localhost:5001/api/thread/')
+            .then(response => (this.info = response.data))
+    },
+
         components: {
         }
     }
