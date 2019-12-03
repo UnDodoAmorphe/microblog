@@ -15,6 +15,7 @@
 
 <script>
     const axios = require('axios').default;
+    const server = "https://localhost:5001/";
     export default {
         name: "PostAndComments",
         props: {
@@ -29,7 +30,7 @@
             }
         },
         mounted () {
-          axios.get('https://localhost:5001/api/thread?title=' + this.title)
+          axios.get(server + 'api/thread?title=' + this.title)
             .then(response => (this.post = response.data))
         },
         components: {
