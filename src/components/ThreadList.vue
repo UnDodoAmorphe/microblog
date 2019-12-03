@@ -22,6 +22,7 @@
 
 <script>
     const axios = require('axios').default;
+    const server = "https://localhost:5001/";
     export default {
         name: "ThreadList",
         data () {
@@ -37,7 +38,7 @@
 
     },
         mounted() {
-        axios.get('https://localhost:5001/api/thread/')
+        axios.get(server + 'api/thread/')
             .then(response => (this.info = response.data))
     },
 
